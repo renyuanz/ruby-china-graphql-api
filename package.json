@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd -r dotenv/config --respawn src/index.ts",
+    "dev": "tsnd --respawn src/index.ts",
     "dev:front": "parcel playground/index.html",
     "dev:schema": "graphql-codegen -w --config codegen.yml",
     "build": "yarn build:schema && yarn build:front && yarn build:server",
     "build:server": "rimraf dist && tsc",
     "build:front": "rimraf public && parcel build playground/index.html --out-dir public",
     "build:schema": "graphql-codegen --config codegen.yml",
-    "start": "node -r dotenv/config dist/index.js",
+    "start": "node dist/index.js",
     "format": "prettier --write \"src/**/*.ts\""
   },
   "browserslist": "> 0.25%, not dead",
