@@ -4,12 +4,14 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsnd -r dotenv/config --respawn src/index.ts",
-    "dev:front": "parcel src/playground/index.html",
-    "build": "yarn graphql-codegen && yarn build:front && tsc -p tsconfig.json src/index.ts",
-    "build:front": "parcel build src/playground/index.html --out-dir src/public",
-    "start": "node -r dotenv/config index.js",
-    "graphql-codegen": "graphql-codegen --config codegen.yml",
-    "graphql-codegen:watch": "graphql-codegen -w --config codegen.yml"
+    "dev:front": "parcel playground/index.html",
+    "dev:schema": "graphql-codegen -w --config codegen.yml",
+    "build": "yarn build:schema && yarn build:front && yarn build:server",
+    "build:server": "rimraf dist && tsc",
+    "build:front": "rimraf public && parcel build playground/index.html --out-dir public",
+    "build:schema": "graphql-codegen --config codegen.yml",
+    "start": "node -r dotenv/config dist/index.js",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
@@ -36,6 +38,8 @@
     "@types/node": "^14.0.27",
     "@types/pino": "^6.3.0",
     "parcel-bundler": "^1.12.4",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
     "ts-node-dev": "^1.0.0-pre.57",
     "typescript": "^3.9.7"
   }

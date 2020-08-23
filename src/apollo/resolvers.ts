@@ -3,8 +3,8 @@ import { IDataSources } from "./datasources";
 
 const resolvers: Resolvers<{ dataSources: IDataSources }> = {
   Query: {
-    topics: (root, args, { dataSources }) => dataSources.topicAPI.getTopics(),
-    me: (root, args, { dataSources }) => dataSources.meAPI.getTopics(),
+    topics: (_1, _2, { dataSources }) => dataSources.topicAPI.getTopics(),
+    me: (_1, _2, { dataSources }) => dataSources.meAPI.getTopics(),
   },
 };
 

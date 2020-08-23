@@ -1,6 +1,10 @@
 node_modules
 .cache
-src/public/**
+public/**
+src/generated/**
+
+# compiled server code
+dist
 
 # env vars
 .env

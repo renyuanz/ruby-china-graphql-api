@@ -15,7 +15,7 @@ const {
 server.register(apolloServer.createHandler());
 
 server.register(fastifyStatic, {
-  root: path.join(__dirname, "public"),
+  root: path.join(__dirname, "../public"),
 });
 
 server.register(oauthPlugin, {
