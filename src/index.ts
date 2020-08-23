@@ -53,7 +53,7 @@ server.get("/login/rubycn/callback", async function (request, reply) {
   reply.redirect("/?access_token=" + token.access_token);
 });
 
-server.listen(parseInt(PORT), (err, address) => {
+server.listen(parseInt(PORT), "0.0.0.0", (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
