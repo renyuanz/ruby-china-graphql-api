@@ -1,0 +1,69 @@
+type Query {
+  topics: [Topic!]
+  me: UserMe!
+}
+
+type UserMe {
+  id: ID!
+  login: String!
+  name: String!
+  avatarUrl: String!
+  location: String!
+  company: String!
+  twitter: String!
+  website: String!
+  tagline: String!
+  github: String!
+  createdAt: String!
+  topicsCount: Int!
+  repliesCount: Int!
+  followingCount: Int!
+  followersCount: Int!
+  favoritesCount: Int!
+  level: String!
+  levelName: String!
+  bio: String
+  email: String!
+  # abilities: Abilities
+}
+
+type Abilities {
+  update: Boolean
+  destroy: Boolean
+  ban: Boolean
+  normal: Boolean
+  excellent: Boolean
+  unexcellent: Boolean
+  close: Boolean
+  open: Boolean
+}
+
+type User {
+  id: ID!
+  login: String!
+  name: String!
+  avatarUrl: String!
+  abilities: Abilities
+}
+
+type Topic {
+  id: ID!
+  title: String
+  createdAt: String
+  updatedAt: String
+  repliedAt: String
+  repliesCount: Int
+  nodeName: String
+  nodeId: Int
+  lastReplyUserId: String
+  lastReplyUserLogin: String
+  grade: String
+  likesCount: Int
+  suggestedAt: String
+  closedAt: String
+  deleted: Boolean
+  excellent: Int
+  hits: Int
+  abilities: Abilities
+  user: User
+}
