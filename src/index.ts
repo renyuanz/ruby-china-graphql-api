@@ -10,6 +10,7 @@ const {
   PUBLIC_URL = "",
   RUBYCN_OAUTH_CLIENT_ID = "",
   RUBYCN_OAUTH_CLIENT_SECRET = "",
+  PORT = "5000",
 } = process.env;
 
 server.register(apolloServer.createHandler());
@@ -52,7 +53,7 @@ server.get("/login/rubycn/callback", async function (request, reply) {
   reply.redirect("/?access_token=" + token.access_token);
 });
 
-server.listen(5000, (err, address) => {
+server.listen(parseInt(PORT), (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
