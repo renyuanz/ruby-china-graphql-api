@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --respawn src/index.ts",
+    "dev": "nodemon",
     "dev:front": "parcel playground/index.html",
     "dev:schema": "graphql-codegen -w --config codegen.yml",
     "build": "yarn build:schema && yarn build:front && yarn build:server",
-    "build:server": "rimraf dist && tsc",
-    "build:front": "rimraf public && parcel build playground/index.html --out-dir public",
+    "build:server": "tsc",
+    "build:front": "parcel build playground/index.html --out-dir public",
     "build:schema": "graphql-codegen --config codegen.yml",
     "start": "node dist/index.js",
     "format": "prettier --write \"src/**/*.ts\""
@@ -37,6 +37,7 @@
     "@types/lodash": "^4.14.159",
     "@types/node": "^14.0.27",
     "@types/pino": "^6.3.0",
+    "nodemon": "^2.0.4",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",

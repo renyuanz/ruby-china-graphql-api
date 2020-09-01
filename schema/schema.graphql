@@ -1,6 +1,11 @@
 type Query {
   topics: [Topic!]
+  topic(id: ID!): Topic
   me: UserMe!
+  nodes: [Node!]
+  node(id: ID!): Node
+  users(limit: Int): [User]
+  # user(id: ID!): User
 }
 
 type UserMe {
@@ -66,4 +71,15 @@ type Topic {
   hits: Int
   abilities: Abilities
   user: User
+}
+
+type Node {
+  id: String!
+  name: String!
+  summary: String!
+  sectionId: String!
+  sectionName: String!
+  topicsCount: String!
+  sort: Int!
+  updated_at: String!
 }

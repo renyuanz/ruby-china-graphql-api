@@ -1,9 +1,7 @@
-import TopicAPI from "./Topic";
-import MeAPI from "./Me";
+import RubyChinaAPI from "./RubyChina";
 // set up any dataSources our resolvers need
 const dataSources = () => ({
-  topicAPI: new TopicAPI(),
-  meAPI: new MeAPI(),
+  rubyChinaAPI: new RubyChinaAPI(),
 });
 
 export type IDataSources = ReturnType<typeof dataSources>;
