@@ -45,8 +45,6 @@ server.get("/login/rubycn/callback", async function (request, reply) {
     request
   );
 
-  console.log(token);
-
   // if later you need to refresh the token you can use
   // const newToken = await this.getNewAccessTokenUsingRefreshToken(token.refresh_token)
 
