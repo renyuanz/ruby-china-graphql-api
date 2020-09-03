@@ -1,11 +1,11 @@
 type Query {
   topics(type: TopicType, nodeId: Int, offset: Int, limit: Int): [Topic!]
   topic(id: ID!): Topic
-  me: UserMe!
+  me: UserDetail!
   nodes: [Node!]
   node(id: ID!): Node
-  users(limit: Int): [User]
-  # user(id: ID!): User
+  users(limit: Int): [UserDetail]
+  user(login: String!): UserDetail
 }
 
 enum TopicType {
@@ -16,7 +16,7 @@ enum TopicType {
   EXCELLENT
 }
 
-type UserMe {
+type UserDetail {
   id: ID!
   login: String!
   name: String!
@@ -37,7 +37,40 @@ type UserMe {
   levelName: String!
   bio: String
   email: String!
-  # abilities: Abilities
+  replies(offset: Int, limit: Int): [Reply]
+  topics(offset: Int, limit: Int, order: TopicOrderType): [Topic]
+  blocked(offset: Int, limit: Int): [User]
+  following(offset: Int, limit: Int): [User]
+  followers(offset: Int, limit: Int): [User]
+  favorites(offset: Int, limit: Int): [Topic]
+  abilities: ResourceAbilities
+}
+
+enum TopicOrderType {
+  RECENT
+  LIKES
+  REPLIES
+}
+
+type Reply {
+  id: ID!
+  body_html: String!
+  body: String!
+  topic_id: Int!
+  created_at: String!
+  updated_at: String!
+  likes_count: Int!
+  action: String
+  target_type: String
+  deleted: Boolean!
+  topic_title: String!
+  abilities: ResourceAbilities
+  user: User!
+}
+
+type ResourceAbilities {
+  update: Boolean!
+  destroy: Boolean!
 }
 
 type Abilities {
@@ -56,7 +89,7 @@ type User {
   login: String!
   name: String!
   avatarUrl: String!
-  abilities: Abilities
+  abilities: ResourceAbilities!
 }
 
 type Topic {
