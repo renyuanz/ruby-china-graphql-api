@@ -1,4 +1,5 @@
 import { RESTDataSource } from "apollo-datasource-rest";
+import { QueryTopicsArgs } from "generated/graphql";
 import transformKeys from "../utils/transformKeys";
 
 export default class extends RESTDataSource {
@@ -17,8 +18,9 @@ export default class extends RESTDataSource {
     return transformKeys(user);
   }
 
-  async getTopics() {
-    const res = await this.get(`topics`);
+  async getTopics(args: QueryTopicsArgs) {
+    const params = transformKeys(args, true);
+    const res = await this.get(`topics`, params);
     const { topics } = res;
     return topics.map((topic: any) => transformKeys(topic));
   }

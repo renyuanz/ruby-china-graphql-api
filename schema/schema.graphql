@@ -1,11 +1,19 @@
 type Query {
-  topics: [Topic!]
+  topics(type: TopicType, nodeId: Int, offset: Int, limit: Int): [Topic!]
   topic(id: ID!): Topic
   me: UserMe!
   nodes: [Node!]
   node(id: ID!): Node
   users(limit: Int): [User]
   # user(id: ID!): User
+}
+
+enum TopicType {
+  LAST_ACTIVED
+  RECENT
+  NO_REPLY
+  POPULAR
+  EXCELLENT
 }
 
 type UserMe {

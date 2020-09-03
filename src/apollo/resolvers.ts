@@ -1,9 +1,19 @@
 import { Resolvers } from "../generated/graphql";
 import { IDataSources } from "./datasources";
 
+enum TopicType {
+  LAST_ACTIVED = "last_actived",
+  RECENT = "recent",
+  NO_REPLY = "no_reply",
+  POPULAR = "popular",
+  EXCELLENT = "excellent",
+}
+
 const resolvers: Resolvers<{ dataSources: IDataSources }> = {
+  TopicType,
   Query: {
-    topics: (_1, _2, { dataSources }) => dataSources.rubyChinaAPI.getTopics(),
+    topics: (_1, args, { dataSources }) =>
+      dataSources.rubyChinaAPI.getTopics(args),
     topic: (_1, args, { dataSources }) =>
       dataSources.rubyChinaAPI.getTopic(args.id),
     me: (_1, _2, { dataSources }) => dataSources.rubyChinaAPI.getHello(),
