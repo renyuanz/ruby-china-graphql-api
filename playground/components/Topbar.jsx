@@ -21,8 +21,6 @@ const Topbar = ({ token, onTokenChange }) => {
   return (
     <div
       style={{
-        height: 49,
-        borderBottom: "1px solid #d0d0d0",
         display: "flex",
         alignItems: "center",
         padding: "0 1rem",

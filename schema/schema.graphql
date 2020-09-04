@@ -20,14 +20,14 @@ type UserDetail {
   id: ID!
   login: String!
   name: String!
-  avatarUrl: String!
-  location: String!
-  company: String!
-  twitter: String!
-  website: String!
-  tagline: String!
-  github: String!
-  createdAt: String!
+  avatarUrl: String
+  location: String
+  company: String
+  twitter: String
+  website: String
+  tagline: String
+  github: String
+  createdAt: String
   topicsCount: Int!
   repliesCount: Int!
   followingCount: Int!

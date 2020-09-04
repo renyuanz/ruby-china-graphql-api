@@ -4850,6 +4850,11 @@ grapheme-breaker@^0.3.2:
     brfs "^1.2.0"
     unicode-trie "^0.3.1"
 
+graphiql-explorer@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/graphiql-explorer/-/graphiql-explorer-0.6.2.tgz#ea81a8770e3e68c2a97fe849b294bad94ed509e3"
+  integrity sha512-hYSM+TI/0IAXltMOL7YXrvnA5xrKoDjjN7qiksxca2DY7yu46cyHVHG0IKIrBozMDBQLvFOhQMPrzplErwVZ1g==
+
 graphiql@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/graphiql/-/graphiql-1.0.3.tgz#f6b5d5c417d8f1a28786d3228a69883426ba74ad"
@@ -5000,6 +5005,11 @@ graphql@^14.5.3:
   integrity sha512-l0xWZpoPKpppFzMfvVyFmp9vLN7w/ZZJPefUicMCepfJeQ8sMcztloGYY9DfjVPo6tIUDzU5Hw3MUbIjj9AVVA==
   dependencies:
     iterall "^1.2.2"
+
+graphql@^15.3.0:
+  version "15.3.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.3.0.tgz#3ad2b0caab0d110e3be4a5a9b2aa281e362b5278"
+  integrity sha512-GTCJtzJmkFLWRfFJuoo9RWWa/FfamUHgiFosxi/X1Ani4AVWbeyBenZTNX6dM+7WSbbFfTo/25eh0LLkwHMw2w==
 
 har-schema@^2.0.0:
   version "2.0.0"

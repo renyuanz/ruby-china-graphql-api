@@ -1,5 +1,7 @@
 import React from "react";
 import GraphiQL from "graphiql";
+import GraphiQLExplorer from "graphiql-explorer";
+import { buildClientSchema, getIntrospectionQuery, parse } from "graphql";
 import { useLocalStorage, useSearchParam } from "react-use";
 
 import fetch from "isomorphic-fetch";
@@ -17,8 +19,20 @@ function graphQLFetcher(graphQLParams, token) {
 }
 
 const App = () => {
+  const graphiqlRef = React.useRef(null);
+  const [explorerIsOpen, setExplorerIsOpen] = React.useState(false);
+  const [schema, setSchema] = React.useState(null);
+  const [query, setQuery] = React.useState(null);
   const accessTokenQuery = useSearchParam("access_token");
   const [token, setToken, removeToken] = useLocalStorage("access_token", "");
+
+  React.useEffect(() => {
+    fetcher({
+      query: getIntrospectionQuery(),
+    }).then((result) => {
+      setSchema(buildClientSchema(result.data));
+    });
+  }, []);
 
   React.useEffect(() => {
     if (accessTokenQuery) {
@@ -31,6 +45,17 @@ const App = () => {
     token,
   ]);
 
+  const handleToggleExplorer = React.useCallback(() => {
+    setExplorerIsOpen(!explorerIsOpen);
+  }, [setExplorerIsOpen, explorerIsOpen]);
+
+  const handleSetQuery = React.useCallback(
+    (query) => {
+      setQuery(query);
+    },
+    [query, setQuery]
+  );
+
   const handleTokenChange = React.useCallback(
     (val) => {
       setToken(val);
@@ -39,11 +64,39 @@ const App = () => {
   );
 
   return (
-    <div>
-      <Topbar token={token} onTokenChange={handleTokenChange} />
-      <GraphiQL fetcher={fetcher}>
+    <div className="graphiql-container">
+      <GraphiQLExplorer
+        schema={schema}
+        query={query}
+        onEdit={handleSetQuery}
+        onRunOperation={(operationName) =>
+          graphiqlRef.current.handleRunQuery(operationName)
+        }
+        explorerIsOpen={explorerIsOpen}
+        onToggleExplorer={handleToggleExplorer}
+      />
+      <GraphiQL ref={graphiqlRef} query={query} fetcher={fetcher}>
         <GraphiQL.Logo>Ruby China GraphQL API</GraphiQL.Logo>
-        <button>hi</button>
+
+        <GraphiQL.Toolbar>
+          <GraphiQL.Button
+            onClick={() => graphiqlRef.current.handlePrettifyQuery()}
+            label="Prettify"
+            title="Prettify Query (Shift-Ctrl-P)"
+          />
+          <GraphiQL.Button
+            onClick={() => graphiqlRef.current.handleToggleHistory()}
+            label="History"
+            title="Show History"
+          />
+          <GraphiQL.Button
+            onClick={handleToggleExplorer}
+            label="Explorer"
+            title="Toggle Explorer"
+          />
+
+          <Topbar token={token} onTokenChange={handleTokenChange} />
+        </GraphiQL.Toolbar>
       </GraphiQL>
     </div>
   );
