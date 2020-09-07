@@ -26,9 +26,17 @@ const Topbar = ({ token, onTokenChange }) => {
         padding: "0 1rem",
       }}
     >
-      <span>{token ? token : "Login to get your token."}</span>
-      <button onClick={handleLogin}>login</button>
-      <button onClick={handleClear}>clear</button>
+      {token ? (
+        <span>已登录</span>
+      ) : (
+        <button style={{ marginRight: 5 }} onClick={handleLogin}>
+          登录
+        </button>
+      )}
+
+      <button style={{ marginRight: 5 }} onClick={handleClear}>
+        登出
+      </button>
       <img src={GithubImg} alt="" height="24" />
     </div>
   );

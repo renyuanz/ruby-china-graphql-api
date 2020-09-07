@@ -7,8 +7,11 @@ import { useLocalStorage, useSearchParam } from "react-use";
 import fetch from "isomorphic-fetch";
 import Topbar from "./components/Topbar";
 
+const { NODE_ENV } = process.env;
+const PUBLIC_URL = NODE_ENV === "development" ? "http://localhost:5000" : "";
+
 function graphQLFetcher(graphQLParams, token) {
-  return fetch("/graphql", {
+  return fetch(`${PUBLIC_URL}/graphql`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",

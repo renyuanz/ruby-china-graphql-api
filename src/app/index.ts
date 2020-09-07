@@ -1,11 +1,7 @@
 import fastify from "fastify";
-import pino from "pino";
 
 const server = fastify({
-  logger: pino({
-    level: "info",
-    messageKey: "message",
-  }),
+  logger: true,
 });
 
 export default server;

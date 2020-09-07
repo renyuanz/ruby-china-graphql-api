@@ -117,10 +117,10 @@ type Topic {
 type Node {
   id: String!
   name: String!
-  summary: String!
-  sectionId: String!
-  sectionName: String!
-  topicsCount: String!
-  sort: Int!
-  updated_at: String!
+  summary: String
+  sectionId: String
+  sectionName: String
+  topicsCount: String
+  sort: Int
+  updated_at: String
 }
