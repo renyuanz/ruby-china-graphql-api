@@ -16,7 +16,7 @@ const Topbar = ({ token, onTokenChange }) => {
     setValue("");
   }, [setValue]);
 
-  const handleLogin = () => (location.href = "/login/rubycn");
+  const handleLogin = () => (location.href = "/connect/rubycn");
 
   return (
     <div
@@ -27,15 +27,15 @@ const Topbar = ({ token, onTokenChange }) => {
       }}
     >
       {token ? (
-        <span>已登录</span>
+        <span>logged in</span>
       ) : (
         <button style={{ marginRight: 5 }} onClick={handleLogin}>
-          登录
+          login
         </button>
       )}
 
       <button style={{ marginRight: 5 }} onClick={handleClear}>
-        登出
+        log out
       </button>
       <img src={GithubImg} alt="" height="24" />
     </div>

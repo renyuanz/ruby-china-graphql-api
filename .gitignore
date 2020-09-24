@@ -8,3 +8,6 @@ dist
 
 # env vars
 .env
+
+.vercel
+yarn-error.log

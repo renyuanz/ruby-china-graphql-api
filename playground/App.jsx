@@ -11,7 +11,7 @@ const { NODE_ENV } = process.env;
 const PUBLIC_URL = NODE_ENV === "development" ? "http://localhost:5000" : "";
 
 function graphQLFetcher(graphQLParams, token) {
-  return fetch(`${PUBLIC_URL}/graphql`, {
+  return fetch(`${PUBLIC_URL}/api/graphql`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",

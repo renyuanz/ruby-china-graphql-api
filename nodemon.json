@@ -1,7 +1,0 @@
-{
-  "verboase": true,
-  "ignore": ["node_modules", ".cache", "dist"],
-  "watch": ["src"],
-  "ext": "ts,js",
-  "exec": "ts-node -P ./tsconfig.json ./src/index.ts"
-}

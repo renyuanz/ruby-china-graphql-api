@@ -1,4 +1,4 @@
-import { ApolloServer } from "apollo-server-fastify";
+import { ApolloServer } from "@saeris/apollo-server-vercel";
 
 import typeDefs from "./schema";
 import resolvers from "./resolvers";
@@ -9,8 +9,9 @@ export default new ApolloServer({
   resolvers,
   dataSources,
   introspection: true,
-  context: ({ request }) => {
-    const token = request.headers.authorization || null;
+  playground: true,
+  context: ({ req }) => {
+    const token = req?.headers?.authorization || null;
     return { token };
   },
 });
