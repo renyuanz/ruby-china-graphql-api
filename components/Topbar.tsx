@@ -1,5 +1,4 @@
 import React from "react";
-import GithubImg from "./github.png";
 
 const Topbar = ({ token, onTokenChange }) => {
   const [value, setValue] = React.useState(token);
@@ -16,7 +15,7 @@ const Topbar = ({ token, onTokenChange }) => {
     setValue("");
   }, [setValue]);
 
-  const handleLogin = () => (location.href = "/connect/rubycn");
+  const handleLogin = () => (location.href = "/connect/homeland");
 
   return (
     <div
@@ -24,20 +23,19 @@ const Topbar = ({ token, onTokenChange }) => {
         display: "flex",
         alignItems: "center",
         padding: "0 1rem",
+        height: 30,
       }}
     >
       {token ? (
-        <span>logged in</span>
+        "logged in"
       ) : (
         <button style={{ marginRight: 5 }} onClick={handleLogin}>
           login
         </button>
       )}
-
       <button style={{ marginRight: 5 }} onClick={handleClear}>
         log out
       </button>
-      <img src={GithubImg} alt="" height="24" />
     </div>
   );
 };

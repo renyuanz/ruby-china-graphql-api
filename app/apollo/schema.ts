@@ -1,0 +1,132 @@
+import { gql } from "apollo-server-core";
+
+const typeDefs = gql`
+  type Query {
+    topics(type: TopicType, nodeId: Int, offset: Int, limit: Int): [Topic!]
+    topic(id: ID!): Topic
+    me: UserDetail!
+    nodes: [Node!]
+    node(id: ID!): Node
+    users(limit: Int): [UserDetail]
+    user(login: String!): UserDetail
+  }
+
+  enum TopicType {
+    LAST_ACTIVED
+    RECENT
+    NO_REPLY
+    POPULAR
+    EXCELLENT
+  }
+
+  type UserDetail {
+    id: ID!
+    login: String!
+    name: String!
+    avatarUrl: String
+    location: String
+    company: String
+    twitter: String
+    website: String
+    tagline: String
+    github: String
+    createdAt: String
+    topicsCount: Int!
+    repliesCount: Int!
+    followingCount: Int!
+    followersCount: Int!
+    favoritesCount: Int!
+    level: String!
+    levelName: String!
+    bio: String
+    email: String!
+    replies(offset: Int, limit: Int): [Reply]
+    topics(offset: Int, limit: Int, order: TopicOrderType): [Topic]
+    blocked(offset: Int, limit: Int): [User]
+    following(offset: Int, limit: Int): [User]
+    followers(offset: Int, limit: Int): [User]
+    favorites(offset: Int, limit: Int): [Topic]
+    abilities: ResourceAbilities
+  }
+
+  enum TopicOrderType {
+    RECENT
+    LIKES
+    REPLIES
+  }
+
+  type Reply {
+    id: ID!
+    body_html: String!
+    body: String!
+    topic_id: Int!
+    created_at: String!
+    updated_at: String!
+    likes_count: Int!
+    action: String
+    target_type: String
+    deleted: Boolean!
+    topic_title: String!
+    abilities: ResourceAbilities
+    user: User!
+  }
+
+  type ResourceAbilities {
+    update: Boolean!
+    destroy: Boolean!
+  }
+
+  type Abilities {
+    update: Boolean
+    destroy: Boolean
+    ban: Boolean
+    normal: Boolean
+    excellent: Boolean
+    unexcellent: Boolean
+    close: Boolean
+    open: Boolean
+  }
+
+  type User {
+    id: ID!
+    login: String!
+    name: String!
+    avatarUrl: String!
+    abilities: ResourceAbilities!
+  }
+
+  type Topic {
+    id: ID!
+    title: String
+    createdAt: String
+    updatedAt: String
+    repliedAt: String
+    repliesCount: Int
+    nodeName: String
+    nodeId: Int
+    lastReplyUserId: String
+    lastReplyUserLogin: String
+    grade: String
+    likesCount: Int
+    suggestedAt: String
+    closedAt: String
+    deleted: Boolean
+    excellent: Int
+    hits: Int
+    abilities: Abilities
+    user: User
+  }
+
+  type Node {
+    id: String!
+    name: String!
+    summary: String
+    sectionId: String
+    sectionName: String
+    topicsCount: String
+    sort: Int
+    updated_at: String
+  }
+`;
+
+export default typeDefs;

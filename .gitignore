@@ -1,13 +1,14 @@
 node_modules
 .cache
 public/**
-src/generated/**
+app/generated/**
 
 # compiled server code
 dist
 
 # env vars
 .env
+.next
 
 .vercel
 yarn-error.log

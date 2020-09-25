@@ -9,7 +9,6 @@ export default new ApolloServer({
   resolvers,
   dataSources,
   introspection: true,
-  playground: true,
   context: ({ req }) => {
     const token = req?.headers?.authorization || null;
     return { token };
